@@ -1,3 +1,7 @@
+src/upload
+src/public
+*.kdev4*
+package-lock.json
 # Logs
 logs
 *.log

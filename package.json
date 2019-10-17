@@ -1,0 +1,31 @@
+{
+  "name": "mycdnapi",
+  "version": "1.0.0",
+  "description": "My CDN API",
+  "main": "index.js",
+  "scripts": {
+    "local": "ENV=local ./node_modules/nodemon/bin/nodemon.js src/index.js",
+    "production": "ENV=local ./node_modules/nodemon/bin/nodemon.js src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marssola/mycdnapi.git"
+  },
+  "author": "Mauro Marssola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marssola/mycdnapi/issues"
+  },
+  "homepage": "https://github.com/marssola/mycdnapi#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "nodemon": "^1.19.4",
+    "path": "^0.12.7",
+    "sharp": "^0.23.1"
+  }
+}
