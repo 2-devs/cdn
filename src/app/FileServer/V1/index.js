@@ -1,7 +1,12 @@
 const express = require('express')
+const compression = require('compression')
 const router = express.Router()
 const path = require('path')
 const FileServer = require('./controller/FileServer')
+const { cache } = require('../../../middlewares/cache')
+
+router.use(compression())
+router.use(cache(86400))
 
 router.get('/:file', (req, res) => (new FileServer(req, res)).readFile())
 

@@ -1,9 +1,10 @@
 const express = require('express')
+const compression = require('compression')
 const http = require('http')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
-const multer = require('multer')
 const env = require('./config/env')
+const path = require('path')
 
 const app = express()
 

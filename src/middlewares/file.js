@@ -13,12 +13,8 @@ exports.save = async ({ buffer, file, format, folder }) => {
     let filename = `${file.filename.split('.')[0]}.${format}`
     let fileSaved = `${publicPath}${filename}`
     
-    if (!await fs.existsSync(publicPath)) {
-        fs.mkdir(publicPath, { recursive: true }, err => {
-            if (err)
-                throw err
-        })
-    }
+    if (!await fs.existsSync(publicPath))
+        await fs.mkdirSync(publicPath, { recursive: true })
     
     if (buffer) {
         if (await fs.existsSync(file.path))

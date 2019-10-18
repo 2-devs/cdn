@@ -21,12 +21,21 @@ class FileServer {
             return res.status(404).send('Not found')
         
         const stream = fs.createReadStream(file)
+        let buffer = []
         
         let ext = path.extname(file).replace(/./, '')
         if ((ext === 'jpg' || ext === 'webp' || ext === 'png') && (width || height || format)) {
-            return resize({ stream, width, height, format }).pipe(res)
+            let image = resize({ stream, width, height, format })
+            if (res.cache) {
+                image.on('data', chunk => buffer.push(chunk))
+                image.on('end', () => res.cache(Buffer.concat(buffer)))
+            }
+            return image.pipe(res)
         }
-        
+        if (res.cache) {
+            stream.on('data', chunk => buffer.push(chunk))
+            stream.on('end', () => res.cache(Buffer.concat(buffer)))
+        }
         return stream.pipe(res)
     }
 }
