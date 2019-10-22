@@ -7,12 +7,12 @@ const { images } = require(`../../../config/mimestype`)
 
 router.post('/', upload.single('file'), async (req, res) => {
     let { file } = req
-    let { quality, format, size, folder } = req.body
+    let { quality, format, size, folder, name } = req.body
     
     if (file) {
         if (images.find(format => format === file.mimetype)) {
             let buffer = await Compress.compress({ file, format, quality, size })
-            file = await File.save({ file, buffer, format, folder })
+            file = await File.save({ file, buffer, format, folder, name })
         } else {
             file = await File.save({ file, folder })
         }
