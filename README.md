@@ -1,1 +1,1 @@
-# mycdnapi
+# CDN 2-Devs
